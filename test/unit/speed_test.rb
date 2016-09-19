@@ -1,0 +1,1 @@
+class Unit::Speed::Test; end

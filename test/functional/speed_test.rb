@@ -1,0 +1,1 @@
+class Functional::Speed::Test; end

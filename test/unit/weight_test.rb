@@ -1,0 +1,1 @@
+class Unit::Weight::Test; end

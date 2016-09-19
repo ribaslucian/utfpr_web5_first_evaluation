@@ -1,0 +1,1 @@
+class Functional::Weight::Test; end
