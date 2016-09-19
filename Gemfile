@@ -1,4 +1,4 @@
 source 'https://rubygems.org'
 
-gem 'rubocop', github: 'bbatsov/rubocop'
-gem 'sinatra', github: 'sinatra/sinatra'
+gem 'rubocop'
+gem 'sinatra', '~> 1.4', '>= 1.4.7'

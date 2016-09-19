@@ -2,22 +2,17 @@ require 'sinatra'
 require_relative 'app/unit/speed_unit.rb'
 require_relative 'app/unit/weight_unit.rb'
 
+# definimos o charset da aplicacao
+Encoding.default_external = Encoding::UTF_8
+
 class App < Sinatra::Base
-  get '/' do
-    "Hello World!"
-  end
-
-  get '/say/:verb' do
-    "Olá #{params[:verb]}"
-  end
-
-  get '/:conversion_type/:origin_unit/:value/:destination_unit' do
+  get '/:conversion_type/:origin_unit/:value_care/:destination_unit' do
     
-    param[:origin_unit]
-    param[:value]
-    param[:destination_unit]
+    #param[:origin_unit]
+    #param[:value]
+    #param[:destination_unit]
 
-    "Você acessou :#{param[:conversion_type]}"
+    "Você acessou: #{params[:conversion_type]}"
   end
 
 end
