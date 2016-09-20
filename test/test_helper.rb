@@ -5,6 +5,7 @@ require 'minitest/autorun'
 require 'simplecov'
 SimpleCov.start
 
+# docs
 class TestHelper < Minitest::Test; end
 
 # criamos os namespaces basicos do testes
@@ -13,9 +14,8 @@ module Functional
   module Weight; end
 end
 
+# docs
 module Unit
   module Velocity; end
   module Weight; end
 end
-
-# querimos os testes da aplicacao
