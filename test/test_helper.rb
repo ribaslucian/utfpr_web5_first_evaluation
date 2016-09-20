@@ -5,11 +5,10 @@ SimpleCov.start
 
 require 'minitest/autorun'
 require 'minitest/pride'
-# require 'rack/test'
-# include Rack::Test::Methods
+require 'rack/test'
 
-# def app
-#  Sinatra::Application
-# end
+include Rack::Test::Methods
 
-require_relative '../app'
+def app
+  Sinatra::Application
+end

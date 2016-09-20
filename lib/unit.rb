@@ -37,6 +37,8 @@ class Unit
 
     # agora convertemos a unidade base para a unidade destino
     self.method("#{@base_unit}_to_#{metrics[1]}").call value
+  rescue
+    super
   end
 
   # substimos este metodo para que o ruby nao bloqueie
