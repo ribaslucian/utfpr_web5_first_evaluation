@@ -1,5 +1,6 @@
-def String
-  def self.numeric?(string)
-    Float(string) != nil rescue false
+# docs
+class String
+  def numeric?
+    !Float(self).nil? rescue false
   end
 end
