@@ -41,7 +41,7 @@ class Unit
 
   # substimos este metodo para que o ruby nao bloqueie
   # a chamada de metodos nao existes atraves do metodo .method
-  def respond_to_missing?(name, include_private = false)
+  def respond_to_missing?(_name, _include_private = false)
     'nil'
   end
 
