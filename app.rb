@@ -16,7 +16,7 @@ class App < Sinatra::Base
     halt 4032 unless params[:value].numeric?
 
     # obtemos uma Instancia da metrica requirida
-    metrics = Unit.get_instance params
+    metrics = Unit.get_instance params[:conversion_type]
 
     # verificamos se a unidade Origem e correspondentes a metrica requirida
     halt 4033 unless metrics.unit? params[:origin_unit]
@@ -24,11 +24,12 @@ class App < Sinatra::Base
     # verificamos se a unidade Destino e correspondentes a metrica requirida
     halt 4034 unless metrics.unit? params[:destination_unit]
 
-    # convertemos o valor para numero
-    params[:value] = params[:value].to_f
-
+    # definimos o nome do Metodo que sera utilizado para a conversao
     method = "#{params[:origin_unit]}_to_#{params[:destination_unit]}"
 
-    "> #{params[:value]}"
+    # referenciamos o metodo de conversao e informamos o Valor
+    metrics = metrics.method(method).call(params[:value].to_f)
+
+    metrics.to_s
   end
 end

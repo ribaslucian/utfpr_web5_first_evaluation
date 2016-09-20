@@ -2,8 +2,7 @@
 class Unit
   # definimos as unidades basicas de uma metrica
   @units = []
-  @base_unit
-  @value
+  @base_unit = ''
 
   attr_reader :units, :base_unit
 
@@ -13,16 +12,8 @@ class Unit
   end
 
   # obtem a instance de um metrica a partir dos parametros da url
-  def self.get_instance(params)
-    metrics = Object.const_get(params[:conversion_type].capitalize.to_s)
-    metrics.new params[:origin_unit],
-                params[:value],
-                params[:destination_unit]
-  end
-
-  # method de iniciar basico para uma metrica
-  def initialize(value)
-    @value = value
+  def self.get_instance(metric)
+    Object.const_get(metric.capitalize.to_s).new
   end
 
   # verifica se uma unidade especificamente corresponde a metricas de velocidade
@@ -33,17 +24,25 @@ class Unit
   # para nao precisar escrever metodos repetidos, vamos
   # responder a algumas chamadas sem metodos magicamente
   # atraves desse metodo
-  def method_missing(method)
+  def method_missing(method, *argments)
+    # defimos o valor e metricas da conversao
     metrics = method.to_s.split '_to_'
+    value = argments.first
 
     # se as metricas de origin forem iguais retornamos o valor
-    if (metrics[0] == metrics[1])
-      return @value
-    end
+    return value if metrics[0] == metrics[1]
 
-    # primeiro convertemos a unidade para metro
+    # primeiro convertemos a unidade para o valor base
+    value = self.method("#{metrics[0]}_to_#{@base_unit}").call value
 
-    puts "method missing say: #{@value}"
+    # agora convertemos a unidade base para a unidade destino
+    self.method("#{@base_unit}_to_#{metrics[1]}").call value
+  end
+
+  # substimos este metodo para que o ruby nao bloqueie
+  # a chamada de metodos nao existes atraves do metodo .method
+  def respond_to_missing?(name, include_private = false)
+    'nil'
   end
 
   # apresenta os valores da classe em formato string

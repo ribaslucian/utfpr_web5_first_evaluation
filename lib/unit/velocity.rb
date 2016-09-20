@@ -1,6 +1,6 @@
 # docs
 class Velocity < Unit
-  def initialize(value)
+  def initialize
     super
     # metro, quilometro, milha, pes, nos
     @units = %w(meter kilometer mile feet knotted)
@@ -8,36 +8,36 @@ class Velocity < Unit
   end
 
   # convercoes de metro para as unidades
-  def meter_to_kilometer
-    @value / 1000.0
+  def meter_to_kilometer(value)
+    value / 1000.0
   end
 
-  def meter_to_mile
-    @value * 0.00062137
+  def meter_to_mile(value)
+    value * 0.00062137
   end
 
-  def meter_to_feet
-    @value * 3.2808
+  def meter_to_feet(value)
+    value * 3.2808
   end
 
-  def meter_to_knotted
-    @value / 1852.0
+  def meter_to_knotted(value)
+    value / 1852.0
   end
 
   # convercoes das unidades para metro
-  def kilometer_to_meter
-    @value * 1000.0
+  def kilometer_to_meter(value)
+    value * 1000.0
   end
 
-  def mile_to_meter
-    @value / 0.00062137
+  def mile_to_meter(value)
+    value / 0.00062137
   end
 
-  def feet_to_meter
-    @value / 3.2808
+  def feet_to_meter(value)
+    value / 3.2808
   end
 
-  def knotted_to_meter
-    @value * 1852.0
+  def knotted_to_meter(value)
+    value * 1852.0
   end
 end
