@@ -1,5 +1,4 @@
 require_relative '../test_helper'
-require_relative '../../app'
 
 # docs
 class AppTest < Minitest::Test
@@ -48,6 +47,28 @@ class AppTest < Minitest::Test
 
   def test_invalid_weight_value
     get '/weight/grass/letter/grass'
+    assert_equal 403, last_response.status
+  end
+
+  # testando valores para unidades de Origin Invalidas
+  def test_invalid_velocity_origin_unit
+    get '/velocity/invalid_origin/1/meter'
+    assert_equal 403, last_response.status
+  end
+
+  def test_invalid_weight_origin_unit
+    get '/weight/invalid_origin/2/grass'
+    assert_equal 403, last_response.status
+  end
+
+  # testando valores para unidades de Destino Invalidas
+  def test_invalid_velocity_destiny_unit
+    get '/velocity/meter/1/invalid_destiny'
+    assert_equal 403, last_response.status
+  end
+
+  def test_invalid_weight_destiny_unit
+    get '/weight/grass/2/invalid_destiny'
     assert_equal 403, last_response.status
   end
 end

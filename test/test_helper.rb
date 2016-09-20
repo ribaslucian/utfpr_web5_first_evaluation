@@ -12,3 +12,5 @@ include Rack::Test::Methods
 def app
   Sinatra::Application
 end
+
+require_relative '../app'
