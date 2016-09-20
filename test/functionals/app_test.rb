@@ -6,10 +6,6 @@ class AppTest < Minitest::Test
     assert_equal 1, 1
   end
 
-  def test_get_invalid_metric_metric1
-    assert_equal 1, 2
-  end
-
   # testando duas Metricas Invalidas
   # def test_get_invalid_metric_metric1
   #   get '/metric1/param1/param2/param3'
