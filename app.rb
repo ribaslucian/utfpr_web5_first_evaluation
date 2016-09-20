@@ -8,6 +8,12 @@ Encoding.default_external = Encoding::UTF_8
 
 # docs
 class App < Sinatra::Base
+  # constantes que definem os erros HTTP
+  # INVALID_METRIC = 4031
+  # INVALID_VALUE = 4032
+  # INVALID_ORIGIN_UNIT = 4033
+  # INVALID_ORIGIN_DESTINY = 4034
+
   get '/:conversion_type/:origin_unit/:value/:destination_unit' do
     # verificamos se o :conversion_type e uma Metrica valida
     halt 4031 unless Unit.is? params[:conversion_type]

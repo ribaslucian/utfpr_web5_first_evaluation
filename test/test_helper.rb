@@ -1,21 +1,15 @@
-# requirimos a gem minitest que efetuara os tests
-require 'minitest/autorun'
+ENV['RACK_ENV'] = 'test'
 
-# requirimos a gem para verificar a cobertura dos tests
 require 'simplecov'
 SimpleCov.start
 
-# docs
-class TestHelper < Minitest::Test; end
+require 'minitest/autorun'
+require 'minitest/pride'
+# require 'rack/test'
+# include Rack::Test::Methods
 
-# criamos os namespaces basicos do testes
-module Functional
-  module Velocity; end
-  module Weight; end
-end
+# def app
+#  Sinatra::Application
+# end
 
-# docs
-module Unit
-  module Velocity; end
-  module Weight; end
-end
+require_relative '../app'
