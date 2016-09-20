@@ -32,4 +32,9 @@ class App < Sinatra::Base
 
     metrics.to_s
   end
+
+  # tratamos acesso a URLs invalidas
+  get '*' do
+    halt 404, 'invalid page'
+  end
 end
