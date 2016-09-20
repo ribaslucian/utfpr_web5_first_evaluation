@@ -27,6 +27,8 @@ class App < Sinatra::Base
     # convertemos o valor para numero
     params[:value] = params[:value].to_f
 
+    method = "#{params[:origin_unit]}_to_#{params[:destination_unit]}"
+
     "> #{params[:value]}"
   end
 end

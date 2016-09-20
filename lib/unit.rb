@@ -2,7 +2,10 @@
 class Unit
   # definimos as unidades basicas de uma metrica
   @units = []
-  attr_reader :units
+  @base_unit
+  @value
+
+  attr_reader :units, :base_unit
 
   # verifica se eh uma metrica valida
   def self.is?(metric)
@@ -17,11 +20,9 @@ class Unit
                 params[:destination_unit]
   end
 
-  # method de inicilizao basico para uma metrica
-  def initialize(unit_origin, value, unit_destiny)
-    @unit_origin = unit_origin
+  # method de iniciar basico para uma metrica
+  def initialize(value)
     @value = value
-    @unit_destiny = unit_destiny
   end
 
   # verifica se uma unidade especificamente corresponde a metricas de velocidade
@@ -29,6 +30,23 @@ class Unit
     @units.include?(unit)
   end
 
+  # para nao precisar escrever metodos repetidos, vamos
+  # responder a algumas chamadas sem metodos magicamente
+  # atraves desse metodo
+  def method_missing(method)
+    metrics = method.to_s.split '_to_'
+
+    # se as metricas de origin forem iguais retornamos o valor
+    if (metrics[0] == metrics[1])
+      return @value
+    end
+
+    # primeiro convertemos a unidade para metro
+
+    puts "method missing say: #{@value}"
+  end
+
+  # apresenta os valores da classe em formato string
   def debug
     "origin: #{@unit_origin} | value: #{@value} | destiny: #{@unit_destiny}"
   end
